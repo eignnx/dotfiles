@@ -35,6 +35,9 @@ runtime ftplugin/man.vim
 " Using K in normal mode searches for the word under cursor with :Man.
 set keywordprg=:Man
 
+" Set desired window width to 80 characters.
+set winwidth=80
+
 "------------------------------------------------------------
 " Must have options {{{1
 "
@@ -136,7 +139,7 @@ set number
 set notimeout ttimeout ttimeoutlen=200
 
 " Use <F11> to toggle between 'paste' and 'nopaste'
-set pastetoggle=<F11>
+"set pastetoggle=<F11>
 
 
 "------------------------------------------------------------
