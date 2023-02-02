@@ -4,3 +4,10 @@
 	email = eignnx@gmail.com
 	ename = Gideon
 	name = Eignnx
+[credential]
+	helper = 
+	helper = /usr/local/bin/git-credential-manager
+        credentialStore=cache
+
+[credential "https://dev.azure.com"]
+	useHttpPath = true
