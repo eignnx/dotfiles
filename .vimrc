@@ -38,6 +38,13 @@ set keywordprg=:Man
 " Set desired window width to 80 characters.
 set winwidth=80
 
+" Add in rust-style doc comments. They do need to be shifted in front of
+" (higher precendence then) `//` comments though.
+set comments-=://
+set comments+=b:///
+set comments+=b://!
+set comments+=://
+
 "------------------------------------------------------------
 " Must have options {{{1
 "
