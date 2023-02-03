@@ -1,0 +1,72 @@
+#!/bin/bash
+
+#
+# Initialize my custom environment for a new UNIX-like system.
+# 
+# To use:
+# 
+#     $ cd ~
+#     $ git clone https://github.com/eignnx/dotfiles
+#     $ cd dotfiles
+#     $ bash INITIALIZE
+#
+
+set -e
+
+################################################################################
+# Vim
+################################################################################
+
+# Create symlink in $HOME to `.vimrc`
+ln -s $HOME/.vimrc ../dotfiles/.vimrc
+
+
+################################################################################
+# Rust
+################################################################################
+
+echo 'INITIALIZE > Rust'
+echo 'INITIALIZE > Rust > `rustup` : installing...'
+# Install rustup with `default` profile which `component add`s:
+#     - rustc
+#     - rust-std
+#     - cargo
+#     - rust-docs
+#     - rustfmt
+#     - clippy
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+echo 'INITIALIZE > Rust > `rls` : installing...'
+rustup component add rls # Install the rust language server
+
+
+################################################################################
+# Utils
+################################################################################
+
+echo 'INITIALIZE > Utils > `urlencode` : installing...'
+cargo install urlencode
+
+echo 'INITIALIZE > Utils > `exa` : installing...'
+cargo install exa
+
+
+################################################################################
+# Prolog
+################################################################################
+
+echo 'INITIALIZE > Prolog'
+
+read -p 'Install `scryer-prolog`? '
+if [[ $REPLY ~= 'y|Y|yes|Yes|' ]]; then
+    echo 'INITIALIZE > Prolog > `scryer-prolog` : installing...'
+    cargo install urlencode
+fi
+
+# read -p 'Install `swi`? '
+# if [[ $REPLY ~= 'y|Y|yes|Yes|' ]]; then
+#     echo 'INITIALIZE > Prolog > `swi` : installing...'
+#     ????
+# fi
+
+

@@ -88,6 +88,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# Set up `.cargo` (adds `~/.cargo/bin` to PATH).
 . "$HOME/.cargo/env"
 
 export NVM_DIR="$HOME/.nvm"
@@ -99,3 +100,4 @@ PATH="$PATH:$HOME/.rbenv/bin/"
 eval "$(rbenv init - bash)"
 
 PATH="$PATH:$HOME/dotfiles/"
+
