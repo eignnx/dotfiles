@@ -1,5 +1,11 @@
 # eignnx/dotfiles
-My random linux scripts and config files.
+
+## Initialization
+Run the `INITIALIZE` bash script to install all my favorite programs:
+
+```shell
+$ bash INITIALIZE
+```
 
 ## Manifest
 

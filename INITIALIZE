@@ -18,7 +18,7 @@ set -e
 ################################################################################
 
 # Create symlink in $HOME to `.vimrc`
-ln -s $HOME/.vimrc ../dotfiles/.vimrc
+ln -s ../dotfiles/.vimrc $HOME/.vimrc
 
 
 ################################################################################
@@ -57,16 +57,38 @@ cargo install exa
 
 echo 'INITIALIZE > Prolog'
 
+echo 'INITIALIZE > Prolog > SWI'
+read -p 'Install SWI Prolog? '
+if [[ $REPLY ~= 'y|Y|yes|Yes|' ]]; then
+    echo 'INITIALIZE > Prolog > SWI : installing...'
+
+    # Add the package repository for `apt`.
+    sudo apt-get install software-properties-common
+    sudo apt-add-repository ppa:swi-prolog/stable
+    sudo apt-get update
+    sudo apt-get install swi-prolog
+fi
+
+echo 'INITIALIZE > Prolog > Scryer'
 read -p 'Install `scryer-prolog`? '
 if [[ $REPLY ~= 'y|Y|yes|Yes|' ]]; then
     echo 'INITIALIZE > Prolog > `scryer-prolog` : installing...'
-    cargo install urlencode
+    cargo install scryer-prolog \
+        || echo 'INITIALIZE: Problem - Could not install `scryer-prolog`. It happens.'
 fi
 
-# read -p 'Install `swi`? '
-# if [[ $REPLY ~= 'y|Y|yes|Yes|' ]]; then
-#     echo 'INITIALIZE > Prolog > `swi` : installing...'
-#     ????
-# fi
 
+################################################################################
+# Moving Config Files
+################################################################################
+
+# Create symlink in $HOME to `.vimrc`
+ln -s ../dotfiles/.bashrc       $HOME/.bashrc
+ln -s ../dotfiles/.bash_aliases $HOME/.bash_aliases
+ln -s ../dotfiles/.lynxrc       $HOME/.lynxrc
+
+
+################################################################################
+
+echo "INITIALIZE: You're all set up!"
 
