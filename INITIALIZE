@@ -82,11 +82,37 @@ fi
 # Moving Config Files
 ################################################################################
 
+echo 'INITIALIZE > Symlink Config Files'
+
 # Create symlink in $HOME to `.vimrc`
 ln -s ../dotfiles/.bashrc       $HOME/.bashrc
 ln -s ../dotfiles/.bash_aliases $HOME/.bash_aliases
 ln -s ../dotfiles/.lynxrc       $HOME/.lynxrc
 
+
+################################################################################
+# Setting up Git and `gh`
+################################################################################
+
+echo 'INITIALIZE > Git'
+echo 'INITIALIZE > Git > install `gh`'
+
+####### TAKEN FROM: https://github.com/cli/cli/blob/trunk/docs/install_linux.md
+# Ensure `curl` is installed.
+type -p curl >/dev/null || sudo apt install curl -y
+# Add the `apt` repository in which `gh` lives.
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+sudo apt update
+# Actually install `gh`.
+sudo apt install gh -y
+####### END TAKEN FROM: https://github.com/cli/cli/blob/trunk/docs/install_linux.md
+
+echo 'INITIALIZE > Git > Authenticate with `gh`'
+gh auth login
+echo 'INITIALIZE > Git > Setup Git to work with `gh`'
+gh auth setup-git
 
 ################################################################################
 
