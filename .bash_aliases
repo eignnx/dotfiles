@@ -10,10 +10,15 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+# ls/exa aliases
+alias ls='exa -GF'
+alias l='exa'
+alias la='exa -a'
+alias ll='exa -alFhb'
+alias et='exa -T --level=2'
+alias ett='exa -T --level=3'
+alias ettt='exa -T --level=4'
+alias eT='exa -T'
 
 LYNX_OPTIONS=''
 alias lynx='/usr/bin/lynx $LYNX_OPTIONS'
